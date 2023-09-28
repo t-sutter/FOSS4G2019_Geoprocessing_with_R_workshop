@@ -1,0 +1,95 @@
+---
+Author: Tate Sutter
+Purpose: Complete Nicolas Roeland Spatial R tutorial.
+Date: September 27, 2023
+---
+
+
+```{r setup, include = FALSE}
+# list of required packages
+library(tidyverse, sf) 
+```
+
+
+``` {r learnLists}
+fruits <- c("apples", "bananas", "oranges")
+# print(fruits)
+```
+
+``` {r forLoop}
+# Simple for loop and print
+for (fruit in fruits) {
+  print(fruit)
+}
+
+```
+
+``` {r loopWIndices}
+# For loop with indices
+  # Functions are more efficient in R than for loops. 
+
+quantities <- c(3, 2, 1)
+
+for (x in seq(length(fruits))) {
+  print(paste0("I have ", quantities[x], " ", fruits[x],"."))
+}
+```
+
+``` {r learnDataframes}
+# Dataframes
+
+df1 <- cbind.data.frame(fruits, quantities)  # Column binding
+print(df1)
+
+df2 <- as.data.frame(fruits) # column binding
+colnames(df2) <- "fruits" # change column name
+print(df2)
+```
+
+``` {r columnsDataframe}
+# Adding columns to dataframes.
+
+df3 <- cbind(df2, # entry dataframe
+             quantities, # column with quantities
+             price = c(4,7,9) # new column with price
+)
+print(df3)
+```
+### Filtering / Subsetting
+
+``` {r selectVariables}
+# Select variables
+library(tidyverse)
+
+names(df3)
+
+df3[, 2:3]
+
+df3[, c("fruits","price")]
+
+# How do I create value for the pipe symbol (%>%)? 
+
+df3 %>% # pipe symbol
+  select(fruits, quantities) # select from dplyr
+```
+
+``` {r filterValues}
+df3[df3["price"] > 5,] # don't forget the column comma
+
+df3 %>%
+  filter(quantities >= 2)
+```
+
+``` {r mixSelectFilter}
+df3[df3["price"] > 5, 1] # select the prices > 5
+
+df3 %>% 
+  filter(price > 5) %>%  # filter first
+  select(fruits)         # select second
+```
+
+
+
+
+
+
